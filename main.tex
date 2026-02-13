@@ -1,0 +1,67 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{resume}
+\usepackage{graphicx}
+\usepackage[left=0.45in,top=0.45in,right=0.45in,bottom=0.45in]{geometry}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\definecolor{skillAdvanced}{RGB}{34,139,34}   % green
+\definecolor{skillIntermediate}{RGB}{0,102,204} % blue
+\definecolor{skillFamiliar}{RGB}{100,100,100}   % grey
+\definecolor{skillempty}{RGB}{224,224,224}      % light grey for empty bar segment
+\definecolor{sectionBlue}{RGB}{81,151,189}  % blue for section titles, name, and all bold
+\newcommand{\adv}[1]{\textbf{\textcolor{skillAdvanced}{#1}}}
+\newcommand{\intm}[1]{\textbf{\textcolor{skillIntermediate}{#1}}}
+\newcommand{\famili}[1]{\textbf{\textcolor{skillFamiliar}{#1}}}
+
+% Skill bar: 1=Familiar (grey), 2=Intermediate (blue), 3=Advanced (green) — same as startup
+\newcommand{\skillbar}[1]{%
+  \begin{tikzpicture}[x=0.5em,y=0.36em,baseline=-0.12em]
+  \ifcase#1
+  \or \fill[fill=skillFamiliar] (0,0) rectangle (1,1); \fill[fill=skillempty] (1.15,0) rectangle (2.15,1); \fill[fill=skillempty] (2.3,0) rectangle (3.3,1);
+  \or \fill[fill=skillIntermediate] (0,0) rectangle (1,1); \fill[fill=skillIntermediate] (1.15,0) rectangle (2.15,1); \fill[fill=skillempty] (2.3,0) rectangle (3.3,1);
+  \or \fill[fill=skillAdvanced] (0,0) rectangle (1,1); \fill[fill=skillAdvanced] (1.15,0) rectangle (2.15,1); \fill[fill=skillAdvanced] (2.3,0) rectangle (3.3,1);
+  \fi
+  \end{tikzpicture}%
+}
+\newcommand{\skillj}[2]{\mbox{#1 \skillbar{#2}}}
+
+% All bold text in section blue (same as section titles)
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{\textcolor{sectionBlue}{\oldtextbf{#1}}}
+
+% Section titles and rule in sectionBlue
+\renewenvironment{rSection}[1]{%
+  \sectionskip
+  \textcolor{sectionBlue}{\MakeUppercase{\bf #1}}%
+  \sectionlineskip
+  {\color{sectionBlue}\hrule}%
+  \begin{list}{}{ \setlength{\leftmargin}{1.5em} }
+  \item[]
+}{\end{list}}
+
+% Subsection: job title and dates bold (section blue); company and field black
+\renewenvironment{rSubsection}[4]{%
+  \textcolor{sectionBlue}{\bf #1} \hfill \textcolor{sectionBlue}{\bf #2}%
+  \ifthenelse{\equal{#3}{}}{}{ \\
+  \oldtextbf{#3} \hfill \oldtextbf{#4}%
+  }\smallskip
+  \begin{list}{$\cdot$}{\leftmargin=0em}%
+   \itemsep -0.5em \vspace{-0.5em}%
+  }{
+  \end{list}
+  \vspace{0.5em}%
+}
+
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+
+\begin{document}
+\input{first_page}
+\clearpage
+\input{second_page}
+
+\end{document}
