@@ -2,7 +2,7 @@
 # Builds main.tex -> bigini_resume.pdf, then stages changes
 
 MAIN = main
-OUTPUT = bigini_resume
+OUTPUT = bigini_resume_institutional
 LATEX = pdflatex
 LATEXFLAGS = -interaction=nonstopmode -file-line-error -jobname=$(OUTPUT)
 
